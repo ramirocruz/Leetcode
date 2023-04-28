@@ -28,7 +28,7 @@ public:
         vector<int>tempdata;
         set<vector<int>>st;
         vector<vector<int>>res;
-        sort(candidates.begin(),candidates.end());
+        // sort(candidates.begin(),candidates.end());
         helper(candidates,target,tempdata,0,0,st,res);
         return res;
     }
