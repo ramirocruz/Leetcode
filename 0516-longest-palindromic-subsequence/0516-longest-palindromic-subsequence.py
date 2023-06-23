@@ -1,18 +1,21 @@
 class Solution:
-    def lcs(self,s1,s2,i,j,dp):
-        if(i < 0 or j < 0):
-            return 0
-        if(dp[i][j] != -1):
-            return dp[i][j]
-        
-        if(s1[i] == s2[j]):
-            dp[i][j] = 1 + self.lcs(s1,s2,i-1,j-1,dp)
-            return dp[i][j]
-        dp[i][j] = max(self.lcs(s1,s2,i-1,j,dp),self.lcs(s1,s2,i,j-1,dp))
-        return dp[i][j]
     
     def longestPalindromeSubseq(self, s: str) -> int:
         
         dp = [[-1]*len(s) for _ in range(len(s))]
-        lcs = self.lcs(s,s[-1::-1],len(s)-1,len(s) -1,dp)
-        return lcs
+        def lps(l,r):
+            if(dp[l][r] != -1):
+                return dp[l][r]
+            if(l > r):
+                return 0
+            if(l == r):
+                return 1
+            if(s[l] == s[r]):
+                dp[l][r] = lps(l+1,r-1) + 2
+            else:
+                dp[l][r] = max(lps(l,r-1),lps(l+1,r))
+            
+            return dp[l][r]
+        
+
+        return lps(0,len(s) - 1)
