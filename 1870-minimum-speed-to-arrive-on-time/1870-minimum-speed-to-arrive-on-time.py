@@ -17,11 +17,11 @@ class Solution:
             t += dist[-1]/speed
             return t
        
-        left = 1
-        right = int(1e7+1)
+        left = max(1,floor(max_time/hour))
+        right = int(max(max(dist),ceil(dist[-1]/(hour - min_time))))
         
         ans = -1
-        
+        # print(left,right)
         while(left <= right):
             mid = (left + right)//2
             time_taken = get_time(mid)
