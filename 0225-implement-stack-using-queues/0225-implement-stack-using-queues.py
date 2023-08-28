@@ -14,8 +14,7 @@ class MyStack:
 
     def pop(self) -> int:
         while(len(self.q1) > 1):
-            tempvar = self.q1.popleft()
-            self.q2.append(tempvar)
+            self.q2.append(self.q1.popleft())
         res = self.q1.popleft()
         print(self.q1,self.q2)
         self.q1,self.q2 = self.q2,self.q1
