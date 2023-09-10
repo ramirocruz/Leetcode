@@ -8,6 +8,17 @@ class Solution:
         
         2nC2 x (2n - 2)C2 x (2n - 4)C2 x....x 4C2 x 2C2
         
+        So for n = 1
+        
+        ans = 2C2 = 1
+        
+        for n = 2
+        ans = 4C2 * 2C2 = 4C2 * f(1)
+        
+        for n = 3
+        
+        ans = 6C2 * 4C2 * 2C2 = 6C2 * f(2)
+        
         """
         M = int(1e9 + 7)
         ans = 1
