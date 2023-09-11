@@ -10,12 +10,9 @@ class Solution:
         # print(freq_dict)
         ans = []
         for key,val in freq_dict.items():
-            temp = []
-            for elem in val:
-                temp.append(elem)
-                if len(temp) == key:
-                    ans.append(temp)
-                    temp = []
+            for i in range(0,len(val),key):
+                ans.append(val[i:i+key])
+                
         
         
         return ans
