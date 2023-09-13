@@ -11,6 +11,6 @@ class Solution:
             if(ratings[i-1] > ratings[i]):
                 ans[i-1] = max(ans[i] + 1,ans[i-1])
         
-        print(ans)
+        # print(ans)
         return sum(ans)
         
