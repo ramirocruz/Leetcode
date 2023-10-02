@@ -16,8 +16,7 @@ class Solution:
                     a_count += count - 2
                 else:
                     b_count += count - 2
-        
-        print(a_count,b_count)
+
         
         if a_count <= b_count:
             return False
