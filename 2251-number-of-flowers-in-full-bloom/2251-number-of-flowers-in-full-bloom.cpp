@@ -1,3 +1,26 @@
+
+int reverse_lb(vector<pair<int,int>>&v,int target)
+{
+    int l = 0;
+    int r = v.size() - 1;
+    int ans = -1;
+    while(l <= r)
+    {
+        int mid = (l + r)/2;
+        
+        if(v[mid].first <= target)
+        {
+            ans = mid;
+            l = mid + 1;
+        }
+        else
+        {
+            r = mid - 1;
+        }
+    }
+    
+    return ans;
+}
 class Solution {
 public:
     vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
@@ -11,42 +34,27 @@ public:
         
         int f_count = 0;
         
+        vector<pair<int,int>>v;
+        
         for (auto &m : flower_sweep)
         {
             f_count += m.second;
-            flower_sweep[m.first] = f_count;
+           v.push_back({m.first,f_count});
         }
         
+        
         vector<int>res;
-        res.reserve(people.size());
-        // for(auto &m : flower_sweep)
-        // {
-        //     cout << m.first << " "<<m.second << endl;
-        // }
         for(auto &p : people)
         {
-            auto pos = flower_sweep.lower_bound(p);
-            
-            int ans = 0;
-            
-            if(pos == flower_sweep.end())
-                pos--;
-            
-            if((*pos).first > p)
+            int pos = reverse_lb(v,p);
+            if(pos == -1)
             {
-                if(pos == flower_sweep.begin())
-                {
-                    res.push_back(0);
-                    continue;
-                }
-                else
-                {
-                    pos--;
-                }
+                res.push_back(0);
             }
-            
-            ans = (*pos).second;
-            res.push_back(ans);
+            else
+            {
+                res.push_back(v[pos].second);
+            }
         }
         
         return res;
