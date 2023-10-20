@@ -19,34 +19,29 @@
 #        @return the nested list that this NestedInteger holds, if it holds a nested list
 #        Return None if this NestedInteger holds a single integer
 #        """
-def dfs(root: NestedInteger,res):
-    if root == None:
-        return
-    
-    if root.isInteger():
-        res.append(root.getInteger())
-        return
-    
-    for elem in root.getList():
-        dfs(elem,res)
+
     
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
         self.flat_list = []
-        for n_int in nestedList:
-            dfs(n_int,self.flat_list)
+        def flatten_list(nested_list):
+            if nested_list == None:
+                return
+            for nested_integer in nested_list:
+                if nested_integer.isInteger():
+                    self.flat_list.append(nested_integer.getInteger())
+                else:
+                    flatten_list(nested_integer.getList())
         
-        self.length = len(self.flat_list)
-        self.pos = 0
+        flatten_list(nestedList)
+        self.pos = -1
     
     def next(self) -> int:
-        result = self.flat_list[self.pos]
         self.pos += 1
-        return result
+        return self.flat_list[self.pos]
     
     def hasNext(self) -> bool:
-        
-        return self.pos < self.length
+        return self.pos + 1 < len(self.flat_list)
          
 
 # Your NestedIterator object will be instantiated and called as such:
