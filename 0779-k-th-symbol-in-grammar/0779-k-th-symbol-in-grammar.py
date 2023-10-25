@@ -11,11 +11,15 @@ class Solution:
                 
                 nextRootVal = 1 if rootVal == 0 else 0
                 
+                # right child is opposite of rootval
+                
                 return dfs(n - 1, k - (totalNodes // 2), nextRootVal)
             
             else:
                 
                 nextRootVal = 0 if rootVal == 0 else 1
+                
+                # left child is same as the rootval
                 return dfs(n - 1, k, nextRootVal)
         
         
