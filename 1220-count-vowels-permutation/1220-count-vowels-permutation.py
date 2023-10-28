@@ -10,15 +10,19 @@ class Solution:
         
         vowels = ['a','e','i','o','u']
         MOD = int(1e9 + 7)
-        
-        @cache
+        dp = {}
         def dfs(node, chain_len):
             if chain_len == n:
                 return 1
             
+            if (node,chain_len) in dp:
+                return dp[(node,chain_len)]
+            
             res = 0
             for v_node in g[node]:
                 res = (res + dfs(v_node,chain_len + 1))%MOD
+            
+            dp[(node,chain_len)] = res
             
             return res
         
