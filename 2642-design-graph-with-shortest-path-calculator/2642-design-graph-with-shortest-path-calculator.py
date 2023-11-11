@@ -16,7 +16,8 @@ class Graph:
         cost_list[node1] = 0
         while min_heap:
             curr_cost, curr_node = heappop(min_heap)
-            
+            if cost_list[curr_node] < curr_cost:
+                continue
             if curr_node == node2:
                 return curr_cost
             
