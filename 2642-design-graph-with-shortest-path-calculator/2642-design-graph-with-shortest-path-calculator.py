@@ -14,7 +14,6 @@ class Graph:
         min_heap = [(0,node1)]
         cost_list = [inf]*self.n
         cost_list[node1] = 0
-        visited = set({node1})
         while min_heap:
             curr_cost, curr_node = heappop(min_heap)
             
@@ -22,8 +21,6 @@ class Graph:
                 return curr_cost
             
             for v,cost in self.graph[curr_node]:
-                if v in visited:
-                    continue
                 new_cost = curr_cost + cost
                 if new_cost < cost_list[v]:
                     cost_list[v] = new_cost
