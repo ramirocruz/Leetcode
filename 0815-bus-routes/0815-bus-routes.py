@@ -1,32 +1,35 @@
 class Solution:
-    def numBusesToDestination(self, routes, S, T):
-        """
-        :type routes: List[List[int]]
-        :type S: int
-        :type T: int
-        :rtype: int
-        """
-        stopToRoute = collections.defaultdict(set)
+    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        adj_list = {}
+        ans = -1
+        for idx, route in enumerate(routes):
+            for node in route:
+                if node not in adj_list:
+                    adj_list[node] = []
+                adj_list[node].append(idx)
         
-        for i, stops in enumerate(routes):
-            for stop in stops: 
-                stopToRoute[stop].add(i)
-                
-        bfs = deque()
-        bfs.append((S,0))
-        seenStops = {S}
-        seenRoutes = set()
+        # print(adj_list)
         
-        while bfs:
-            stop, count = bfs.popleft()
-            if stop == T: 
-                return count
+        Q = deque()
+        Q.append((source,0))
+        seen_nodes = set({source})
+        seen_routes = set()
+        
+        while Q:
+            curr_node,time_taken = Q.popleft()
+            if curr_node == target:
+                ans = time_taken
             
-            for routeIndex in stopToRoute[stop]:
-                if routeIndex not in seenRoutes:
-                    seenRoutes.add(routeIndex)
-                    for next_stop in routes[routeIndex]:
-                        if next_stop not in seenStops:
-                            seenStops.add(next_stop)
-                            bfs.append((next_stop, count+1))
-        return -1
+            for bus_route in adj_list[curr_node]:
+                if bus_route in seen_routes:
+                    continue
+                seen_routes.add(bus_route)
+            
+                for v in routes[bus_route]:
+                    if v in seen_nodes:
+                        continue
+                    seen_nodes.add(v)
+                    Q.append((v,time_taken + 1))
+                
+            
+        return ans
