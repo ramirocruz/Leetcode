@@ -12,11 +12,13 @@ class Solution:
             for stop in stops: 
                 stopToRoute[stop].add(i)
                 
-        bfs = [(S,0)]
+        bfs = deque()
+        bfs.append((S,0))
         seenStops = {S}
         seenRoutes = set()
         
-        for stop, count in bfs:
+        while bfs:
+            stop, count = bfs.popleft()
             if stop == T: 
                 return count
             
