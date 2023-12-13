@@ -6,19 +6,19 @@ class Solution:
         col_1_cnt = [0]*m
 
 
-        for i in range(n):
-            for j in range(m):
-                row_1_cnt[i] += mat[i][j]
-        
-        for j in range(m):
-            for i in range(n):
-                col_1_cnt[j] += mat[i][j]
+        for row in range(n):
+            for col in range(m):
+                row_1_cnt[row] += mat[row][col]
+                col_1_cnt[col] += mat[row][col]
         
         ans = 0
-        for i in range(n):
-            for j in range(m):
-                if mat[i][j] == row_1_cnt[i] == col_1_cnt[j] == 1:
-                    ans += 1
+        
+        for row in range(n):
+            if row_1_cnt[row] == 1:
+                for col in range(m):
+                    if col_1_cnt[col] == mat[row][col] == 1:
+                        ans += 1
+                        break
         
                 
         return ans
