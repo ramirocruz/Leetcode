@@ -11,8 +11,5 @@ class Solution:
                 max_time = max(max_time,neededTime[i])
                 time_taken += neededTime[i]
                 i += 1
-            # print(curcolor, time_taken,max_time, total_time)
-            if(time_taken == max_time):
-                continue
             total_time += time_taken - max_time
         return total_time
