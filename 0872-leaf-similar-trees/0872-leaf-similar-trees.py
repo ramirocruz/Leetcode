@@ -43,7 +43,6 @@ class Solution:
         
         while st1:
             if isleaf(st1):
-                print("st1",st1)
                 return False
             curnode = st1[-1]
             st1.pop()
@@ -54,7 +53,6 @@ class Solution:
         
         while st2:
             if isleaf(st2):
-                print("st2",st2)
                 return False
             curnode = st2[-1]
             st2.pop()
