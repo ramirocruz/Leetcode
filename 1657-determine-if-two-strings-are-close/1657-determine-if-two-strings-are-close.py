@@ -19,7 +19,7 @@ class Solution:
         
         if word1 == word2:
             return True
-        if f_count_1.keys() == f_count_2.keys():
+        if sorted(f_count_1.keys()) == sorted(f_count_2.keys()):
             word1_vals = sorted(f_count_1.values())
             word2_vals = sorted(f_count_2.values())
             return word1_vals == word2_vals
