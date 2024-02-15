@@ -4,7 +4,7 @@ class Solution:
         prevsum = 0
         persum = -1
         for num in nums:
-            if num < prevsum:
+            if prevsum > num:
                 persum = num + prevsum
             prevsum += num
         
